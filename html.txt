@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công cụ chấm điểm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Công cụ chấm điểm đánh giá</h1>
+
+        <h2>I. Biểu mẫu chấm điểm đối với nhóm lãnh đạo, quản lý</h2>
+        <form id="form-leadership">
+            <table>
+                <tr>
+                    <th>Tiêu chí</th>
+                    <th>Nội dung chi tiết</th>
+                    <th>Điểm tối đa</th>
+                    <th>Điểm chấm</th>
+                </tr>
+                <tr>
+                    <td>Phẩm chất đạo đức, tinh thần trách nhiệm</td>
+                    <td>Chấp hành quy định, đạo đức công vụ</td>
+                    <td>10</td>
+                    <td><input type="number" max="10" min="0" name="leadership-1"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Tinh thần trách nhiệm, gương mẫu trong công việc</td>
+                    <td>10</td>
+                    <td><input type="number" max="10" min="0" name="leadership-2"></td>
+                </tr>
+                <tr>
+                    <td>Năng lực quản lý, điều hành và thực hiện nhiệm vụ</td>
+                    <td>Xây dựng, triển khai kế hoạch công tác</td>
+                    <td>10</td>
+                    <td><input type="number" max="10" min="0" name="leadership-3"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Tổ chức thực hiện, giám sát</td>
+                    <td>10</td>
+                    <td><input type="number" max="10" min="0" name="leadership-4"></td>
+                </tr>
+                <tr>
+                    <td>Hiệu quả hoạt động của đơn vị</td>
+                    <td>Kết quả thực hiện chỉ tiêu công việc</td>
+                    <td>20</td>
+                    <td><input type="number" max="20" min="0" name="leadership-5"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Tác động tích cực đến uy tín, vị thế đơn vị</td>
+                    <td>10</td>
+                    <td><input type="number" max="10" min="0" name="leadership-6"></td>
+                </tr>
+                <tr>
+                    <td>Đổi mới, sáng tạo, chịu trách nhiệm</td>
+                    <td>Sáng kiến đổi mới trong quản lý</td>
+                    <td>10</td>
+                    <td><input type="number" max="10" min="0" name="leadership-7"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Dám chịu trách nhiệm trong các nhiệm vụ quan trọng</td>
+                    <td>10</td>
+                    <td><input type="number" max="10" min="0" name="leadership-8"></td>
+                </tr>
+            </table>
+
+            <button type="button" class="btn" onclick="calculateTotal('leadership')">Tính tổng điểm</button>
+            <p><strong>Tổng điểm: </strong><span id="total-leadership">0</span></p>
+        </form>
+
+        <h2>II. Biểu mẫu chấm điểm đối với nhóm không giữ chức vụ</h2>
+        <form id="form-staff">
+            <table>
+                <tr>
+                    <th>Tiêu chí</th>
+                    <th>Nội dung chi tiết</th>
+                    <th>Điểm tối đa</th>
+                    <th>Điểm chấm</th>
+                </tr>
+                <tr>
+                    <td>Phẩm chất đạo đức, tinh thần trách nhiệm</td>
+                    <td>Chấp hành quy định, đạo đức công vụ</td>
+                    <td>15</td>
+                    <td><input type="number" max="15" min="0" name="staff-1"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Tinh thần trách nhiệm trong thực hiện nhiệm vụ</td>
+                    <td>10</td>
+                    <td><input type="number" max="10" min="0" name="staff-2"></td>
+                </tr>
+                <tr>
+                    <td>Năng lực chuyên môn, nghiệp vụ</td>
+                    <td>Trình độ chuyên môn, kỹ năng đáp ứng yêu cầu</td>
+                    <td>15</td>
+                    <td><input type="number" max="15" min="0" name="staff-3"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Khả năng thực hiện nhiệm vụ thường xuyên</td>
+                    <td>10</td>
+                    <td><input type="number" max="10" min="0" name="staff-4"></td>
+                </tr>
+                <tr>
+                    <td>Kết quả, sản phẩm công việc</td>
+                    <td>Số lượng công việc hoàn thành</td>
+                    <td>20</td>
+                    <td><input type="number" max="20" min="0" name="staff-5"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Chất lượng sản phẩm công việc</td>
+                    <td>20</td>
+                    <td><input type="number" max="20" min="0" name="staff-6"></td>
+                </tr>
+            </table>
+
+            <button type="button" class="btn" onclick="calculateTotal('staff')">Tính tổng điểm</button>
+            <p><strong>Tổng điểm: </strong><span id="total-staff">0</span></p>
+        </form>
+    </div>
+
+    <script>
+        function calculateTotal(formId) {
+            const form = document.getElementById(`form-${formId}`);
+            const inputs = form.querySelectorAll('input[type="number"]');
+            let total = 0;
+
+            inputs.forEach(input => {
+                total += parseFloat(input.value) || 0;
+            });
+
+            document.getElementById(`total-${formId}`).innerText = total;
+        }
+    </script>
+</body>
+</html>
